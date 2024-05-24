@@ -8,6 +8,8 @@ layout: default
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
+                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <!--<hr class="small">-->
                     <span class="subheading">{{ page.description }}</span>
                 </div>
             </div>
@@ -16,7 +18,7 @@ layout: default
 </header>
 
 <!-- Main Content -->
-<div class="container">
+<div>
     <object classid="clsid:CA8A9780-280D-11CF-A24D-444553540000" width="100%" height="100%" border="0"><!--IE-->
         <param name="_Version" value="65539">
         <param name="_ExtentX" value="20108">
