@@ -5,6 +5,104 @@
 
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
+<script src="../pdfjs-4.2.67-dist/build/pdf.mjs" type="module"></script>
+
+<script id="script" type="module">
+    //
+    // If absolute URL from the remote server is provided, configure the CORS
+    // header on that server.
+    //
+    // 添加事件监听器以在点击按钮时下载PDF
+    document.getElementById('download-pdf').addEventListener('click', function() {
+        var link = document.createElement('a');
+        link.href = '../resume.pdf';
+        link.download = '简历-王星武-计算机科学与技术-2024应届本科生.pdf';
+        link.click();
+    });
+    document.getElementById('github').addEventListener('click', function() {
+        var link = document.createElement('a');
+        link.target = '_blank';
+        link.href = 'https://github.com/SeaLandShell/SmartTimetableSchedule';
+        link.click();
+    });
+    document.getElementById('gitee').addEventListener('click', function() {
+        var link = document.createElement('a');
+        link.target = '_blank';
+        link.href = 'https://gitee.com/SeaLandShell/SmartTimetableSchedule';
+        link.click();
+    });
+
+    var url = '../resume.pdf';
+
+    //
+    // The workerSrc property shall be specified.
+    //
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        '../pdfjs-4.2.67-dist/build/pdf.worker.mjs';
+
+    //
+    // Asynchronous download PDF
+    //
+    var loadingTask = pdfjsLib.getDocument(url);
+    var pdf = await loadingTask.promise;
+    //
+    // Fetch the first page
+    //
+    var page = await pdf.getPage(1);
+    var scale = 1.5;
+    var viewport = page.getViewport({ scale });
+    // Support HiDPI-screens.
+    var outputScale = window.devicePixelRatio || 1;
+
+    //
+    // Prepare canvas using PDF page dimensions
+    //
+    var canvas = document.getElementById("the-canvas");
+    var context = canvas.getContext("2d");
+
+    canvas.width = Math.floor(viewport.width * outputScale);
+    canvas.height = Math.floor(viewport.height * outputScale);
+    canvas.style.width = Math.floor(viewport.width) + "px";
+    canvas.style.height = Math.floor(viewport.height) + "px";
+
+    var transform = outputScale !== 1
+        ? [outputScale, 0, 0, outputScale, 0, 0]
+        : null;
+
+    //
+    // Render PDF page into canvas context
+    //
+    var renderContext = {
+        canvasContext: context,
+        transform,
+        viewport,
+    };
+    page.render(renderContext);
+
+
+
+
+
+
+    var page2 = await pdf.getPage(2);
+
+    var canvas2 = document.getElementById("the-canvas2");
+    canvas2.width = Math.floor(viewport.width * outputScale);
+    canvas2.height = Math.floor(viewport.height * outputScale);
+    canvas2.style.width = Math.floor(viewport.width) + "px";
+    canvas2.style.height = Math.floor(viewport.height) + "px";
+    var context2 = canvas2.getContext("2d");
+
+    //
+    // Render PDF page into canvas context
+    //
+    var renderContext2 = {
+        canvasContext: context2,
+        transform,
+        viewport,
+    };
+    page2.render(renderContext2);
+</script>
 <div style="margin: auto 21%;z-index: 2">
     <canvas id="the-canvas" style="border: 1px solid deepskyblue; direction: ltr;"></canvas>
     <canvas id="the-canvas2" style="border: 1px solid deepskyblue; direction: ltr;"></canvas>
@@ -14,104 +112,7 @@
     <button id="github" style="border: none;background-color: #31b0d5;color: #ffffff;">Github</button>
     <button id="gitee" style="border: none;background-color: #31b0d5;color: #ffffff;">Gitee</button>
 </div>
-<script src="../pdfjs-4.2.67-dist/build/pdf.mjs" type="module"></script>
 
-<script id="script" type="module">
-   //
-   // If absolute URL from the remote server is provided, configure the CORS
-   // header on that server.
-   //
-   // 添加事件监听器以在点击按钮时下载PDF
-   document.getElementById('download-pdf').addEventListener('click', function() {
-       var link = document.createElement('a');
-       link.href = '../resume.pdf';
-       link.download = '简历-王星武-计算机科学与技术-2024应届本科生.pdf';
-       link.click();
-   });
-   document.getElementById('github').addEventListener('click', function() {
-       var link = document.createElement('a');
-       link.target = '_blank';
-       link.href = 'https://github.com/SeaLandShell/SmartTimetableSchedule';
-       link.click();
-   });
-   document.getElementById('gitee').addEventListener('click', function() {
-       var link = document.createElement('a');
-       link.target = '_blank';
-       link.href = 'https://gitee.com/SeaLandShell/SmartTimetableSchedule';
-       link.click();
-   });
-
-   var url = '../resume.pdf';
-
-   //
-   // The workerSrc property shall be specified.
-   //
-   pdfjsLib.GlobalWorkerOptions.workerSrc =
-           '../pdfjs-4.2.67-dist/build/pdf.worker.mjs';
-
-   //
-   // Asynchronous download PDF
-   //
-   var loadingTask = pdfjsLib.getDocument(url);
-   var pdf = await loadingTask.promise;
-   //
-   // Fetch the first page
-   //
-   var page = await pdf.getPage(1);
-   var scale = 1.5;
-   var viewport = page.getViewport({ scale });
-   // Support HiDPI-screens.
-   var outputScale = window.devicePixelRatio || 1;
-
-   //
-   // Prepare canvas using PDF page dimensions
-   //
-   var canvas = document.getElementById("the-canvas");
-   var context = canvas.getContext("2d");
-
-   canvas.width = Math.floor(viewport.width * outputScale);
-   canvas.height = Math.floor(viewport.height * outputScale);
-   canvas.style.width = Math.floor(viewport.width) + "px";
-   canvas.style.height = Math.floor(viewport.height) + "px";
-
-   var transform = outputScale !== 1
-           ? [outputScale, 0, 0, outputScale, 0, 0]
-           : null;
-
-   //
-   // Render PDF page into canvas context
-   //
-   var renderContext = {
-      canvasContext: context,
-      transform,
-      viewport,
-   };
-   page.render(renderContext);
-
-
-
-
-
-
-   var page2 = await pdf.getPage(2);
-
-   var canvas2 = document.getElementById("the-canvas2");
-   canvas2.width = Math.floor(viewport.width * outputScale);
-   canvas2.height = Math.floor(viewport.height * outputScale);
-   canvas2.style.width = Math.floor(viewport.width) + "px";
-   canvas2.style.height = Math.floor(viewport.height) + "px";
-   var context2 = canvas2.getContext("2d");
-
-   //
-   // Render PDF page into canvas context
-   //
-   var renderContext2 = {
-       canvasContext: context2,
-       transform,
-       viewport,
-   };
-   page2.render(renderContext2);
-</script>
 <!-- Main Content -->
 <!--<div>-->
 <!--&lt;!&ndash;    <embed src="../resume.pdf" type="application/pdf" width=100% height=800>&ndash;&gt;-->
