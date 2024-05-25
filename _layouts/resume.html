@@ -5,9 +5,10 @@
 
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
-<canvas id="the-canvas" style="border: 1px solid deepskyblue; direction: ltr;margin-left: 8%">
-</canvas>
-<button id="download-pdf" style="border: none;background-color: #31b0d5;color: #ffffff;padding: 5px 10px;position: absolute; top: 1%; left: 21%;">Download</button>
+
+<canvas id="the-canvas" style="border: 1px solid deepskyblue; direction: ltr;margin: auto auto"></canvas>
+<canvas id="the-canvas2" style="border: 1px solid deepskyblue; direction: ltr;margin: auto auto"></canvas>
+<button id="download-pdf" style="border: none;background-color: #31b0d5;color: #ffffff;position: absolute; top: 0%; left: 0%;">Download</button>
 <script src="../pdfjs-4.2.67-dist/build/pdf.mjs" type="module"></script>
 
 <script id="script" type="module">
@@ -69,6 +70,30 @@
       viewport,
    };
    page.render(renderContext);
+
+
+
+
+
+
+   var page2 = await pdf.getPage(2);
+
+   var canvas2 = document.getElementById("the-canvas2");
+   canvas2.width = Math.floor(viewport.width * outputScale);
+   canvas2.height = Math.floor(viewport.height * outputScale);
+   canvas2.style.width = Math.floor(viewport.width) + "px";
+   canvas2.style.height = Math.floor(viewport.height) + "px";
+   var context2 = canvas2.getContext("2d");
+
+   //
+   // Render PDF page into canvas context
+   //
+   var renderContext2 = {
+       canvasContext: context2,
+       transform,
+       viewport,
+   };
+   page2.render(renderContext2);
 </script>
 <!-- Main Content -->
 <!--<div>-->
