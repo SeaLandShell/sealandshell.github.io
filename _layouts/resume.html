@@ -5,7 +5,7 @@
 
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
-<script src="../pdfjs-4.2.67-dist/build/pdf.mjs" type="module"></script>
+<!--<script src="../pdfjs-4.2.67-dist/build/pdf.mjs" type="module"></script>-->
 
 <script id="script" type="module">
     //
@@ -31,7 +31,7 @@
         link.href = 'https://gitee.com/SeaLandShell/SmartTimetableSchedule';
         link.click();
     });
-
+/*
     var url = '../resume.pdf';
 
     //
@@ -102,11 +102,13 @@
         viewport,
     };
     page2.render(renderContext2);
+
+ */
 </script>
-<div style="margin: auto 21%;z-index: 2">
-    <canvas id="the-canvas" style="border: 1px solid deepskyblue; direction: ltr;"></canvas>
-    <canvas id="the-canvas2" style="border: 1px solid deepskyblue; direction: ltr;"></canvas>
-</div>
+<!--<div style="margin: auto 21%;z-index: 2">-->
+<!--    <canvas id="the-canvas" style="border: 1px solid deepskyblue; direction: ltr;"></canvas>-->
+<!--    <canvas id="the-canvas2" style="border: 1px solid deepskyblue; direction: ltr;"></canvas>-->
+<!--</div>-->
 <div style="position: absolute; top: 0.5%; left: 0%;z-index: 1">
     <button id="download-pdf" style="border: none;background-color: #31b0d5;color: #ffffff;margin-bottom: 2px">Download</button>
     <button id="github" style="border: none;background-color: #31b0d5;color: #ffffff;">Github</button>
@@ -114,17 +116,17 @@
 </div>
 
 <!-- Main Content -->
-<!--<div>-->
-<!--&lt;!&ndash;    <embed src="../resume.pdf" type="application/pdf" width=100% height=800>&ndash;&gt;-->
-<!--    <object classid="clsid:CA8A9780-280D-11CF-A24D-444553540000" width="100%" height="100%" border="0">&lt;!&ndash;IE&ndash;&gt;-->
-<!--        <param name="_Version" value="65539">-->
-<!--        <param name="_ExtentX" value="20108">-->
-<!--        <param name="_ExtentY" value="10866">-->
-<!--        <param name="_StockProps" value="0">-->
-<!--        <param name="SRC" value="../resume.pdf">-->
-<!--        <embed src="../resume.pdf" width="100%" height="800" href="../resume.pdf" type="application/pdf" width="100%" height="800"></embed>&lt;!&ndash;FF&ndash;&gt;-->
-<!--    </object>-->
-<!--</div>-->
+<div>
+<!--    <embed src="../resume.pdf" type="application/pdf" width=100% height=800>-->
+    <object classid="clsid:CA8A9780-280D-11CF-A24D-444553540000" width="100%" height="100%" border="0"><!--IE-->
+        <param name="_Version" value="65539">
+        <param name="_ExtentX" value="20108">
+        <param name="_ExtentY" value="10866">
+        <param name="_StockProps" value="0">
+        <param name="SRC" value="../resume.pdf">
+        <embed src="../resume.pdf" width="100%" height="800" href="../resume.pdf" type="application/pdf" width="100%" height="800"></embed><!--FF-->
+    </object>
+</div>
 
 </body>
 
