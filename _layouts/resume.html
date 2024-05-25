@@ -9,7 +9,11 @@
     <canvas id="the-canvas" style="border: 1px solid deepskyblue; direction: ltr;"></canvas>
     <canvas id="the-canvas2" style="border: 1px solid deepskyblue; direction: ltr;"></canvas>
 </div>
-<button id="download-pdf" style="border: none;background-color: #31b0d5;color: #ffffff;position: absolute; top: 0%; left: 0%;">Download</button>
+<div style="position: absolute; top: 0.5%; left: 0%;">
+    <div><button id="download-pdf" style="border: none;background-color: #31b0d5;color: #ffffff;margin-bottom: 2px">Download</button><div>
+        <div><button id="github" style="border: none;background-color: #31b0d5;color: #ffffff;">Github</button></div>
+    <button id="gitee" style="border: none;background-color: #31b0d5;color: #ffffff;">Gitee</button>
+</div>
 <script src="../pdfjs-4.2.67-dist/build/pdf.mjs" type="module"></script>
 
 <script id="script" type="module">
@@ -21,7 +25,19 @@
    document.getElementById('download-pdf').addEventListener('click', function() {
        var link = document.createElement('a');
        link.href = '../resume.pdf';
-       link.download = 'resume.pdf';
+       link.download = '简历-王星武-计算机科学与技术-2024应届本科生.pdf';
+       link.click();
+   });
+   document.getElementById('github').addEventListener('click', function() {
+       var link = document.createElement('a');
+       link.target = '_blank';
+       link.href = 'https://github.com/SeaLandShell/SmartTimetableSchedule';
+       link.click();
+   });
+   document.getElementById('gitee').addEventListener('click', function() {
+       var link = document.createElement('a');
+       link.target = '_blank';
+       link.href = 'https://gitee.com/SeaLandShell/SmartTimetableSchedule';
        link.click();
    });
 
@@ -42,7 +58,7 @@
    // Fetch the first page
    //
    var page = await pdf.getPage(1);
-   var scale = 1.5;
+   var scale = 1.0;
    var viewport = page.getViewport({ scale });
    // Support HiDPI-screens.
    var outputScale = window.devicePixelRatio || 1;
